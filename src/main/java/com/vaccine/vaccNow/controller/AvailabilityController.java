@@ -49,10 +49,12 @@ public class AvailabilityController {
 			vaccineName.add(vaccine.getVaccineName());
 		}
 		
-				return new ResponseEntity<>(vaccineName, HttpStatus.OK);
+				return new ResponseEntity<>(vaccineList, HttpStatus.OK);
 		
 		
 	}
+	
+	
 	
 	@GetMapping("/getAvailabilityByBranch")	
 	public ResponseEntity<Object> getAvailabilityByBranch() {

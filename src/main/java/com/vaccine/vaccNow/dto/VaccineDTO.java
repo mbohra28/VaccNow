@@ -12,7 +12,7 @@ public class VaccineDTO implements Serializable{
 	private Integer vaccineId;
 	private String startTime;
 	private String endTime;
-	private String availableVaccine;
+	private Integer availableVaccine;
 	private String vaccineName;
 	private String branchName;
 	private String email;
@@ -53,10 +53,11 @@ public class VaccineDTO implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAvailableVaccine() {
+	
+	public Integer getAvailableVaccine() {
 		return availableVaccine;
 	}
-	public void setAvailableVaccine(String availableVaccine) {
+	public void setAvailableVaccine(Integer availableVaccine) {
 		this.availableVaccine = availableVaccine;
 	}
 	public String getVaccineName() {

@@ -9,6 +9,8 @@ import java.util.concurrent.FutureTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vaccine.vaccNow.dto.VaccineDTO;
 import com.vaccine.vaccNow.model.Branch;
 import com.vaccine.vaccNow.model.TimeSlot;
@@ -31,11 +33,12 @@ public class BranchServiceImpl implements IBranchService {
 	@Override
 	public void saveBranch(VaccineDTO vaccineDTO) {
 		Branch b = new Branch();
-		b.setBranchName(vaccineDTO.getVaccineName());
+		b.setBranchName(vaccineDTO.getBranchName());
 		List<Vaccine> vaccList = new ArrayList<Vaccine>();
 		Vaccine v = new Vaccine();
-		v.setAvailableVaccine(Integer.parseInt(vaccineDTO.getAvailableVaccine()));
+		v.setAvailableVaccine(vaccineDTO.getAvailableVaccine());
 		v.setVaccineName(vaccineDTO.getVaccineName());
+		v.setDate(new Date());
 		v.setBranch(b);
 		vaccList.add(v);
 		branchRepo.save(b);
@@ -61,7 +64,11 @@ public class BranchServiceImpl implements IBranchService {
 	
 	@Override
 	public List<Vaccine> getVaccinePerBranch() {
-		return ( List<Vaccine>) branchRepo.findById(1).get().getVaccineList();
+		//Optional<Branch> b=branchRepo.findById(1);
+		 Branch b1=branchRepo.findOneById(1);
+		ObjectMapper ob=new ObjectMapper();
+		
+		return ( List<Vaccine>) b1.getVaccineList();
 
 	}
 
